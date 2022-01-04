@@ -61,7 +61,7 @@ public strictfp class RobotPlayer {
 
             turnCount += 1;  // We have now been alive for one more turn!
             System.out.println("Age: " + turnCount + "; Location: " + rc.getLocation());
-
+            System.out.println("Test Commit");
             // Try/catch blocks stop unhandled exceptions, which cause your robot to explode.
             try {
                 // The same run() function is called for every robot on your team, even if they are
