@@ -1,4 +1,4 @@
-package examplefuncsplayer;
+package randomPlayer;
 
 import battlecode.common.*;
 
@@ -13,8 +13,6 @@ public class Miner extends Robot {
 
     @Override
     public void run() throws GameActionException{
-        super.run();
-
         // Try to mine on squares around us.
         MapLocation me = rc.getLocation();
         for (int dx = -1; dx <= 1; dx++) {

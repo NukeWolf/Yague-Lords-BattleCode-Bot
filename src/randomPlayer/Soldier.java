@@ -1,4 +1,4 @@
-package examplefuncsplayer;
+package randomPlayer;
 
 import battlecode.common.*;
 
@@ -8,7 +8,6 @@ public class Soldier extends Robot {
         super(rc);
     }
     public void run() throws GameActionException{
-        super.run();
         // Try to attack someone
         int radius = rc.getType().actionRadiusSquared;
         Team opponent = rc.getTeam().opponent();

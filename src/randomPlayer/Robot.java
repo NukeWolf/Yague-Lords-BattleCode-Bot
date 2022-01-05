@@ -1,4 +1,4 @@
-package examplefuncsplayer;
+package randomPlayer;
 
 import battlecode.common.*;
 import java.util.Random;
@@ -24,13 +24,10 @@ public class Robot {
             Direction.WEST,
             Direction.NORTHWEST,
     };
-    public int turnCount = 0;
-
-
     public Robot(RobotController robotController) throws GameActionException{
         rc = robotController;
     }
     public void run() throws GameActionException{
-        turnCount += 1;  // We have now been alive for one more turn!
+
     }
 }
