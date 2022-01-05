@@ -5,9 +5,8 @@ import battlecode.common.RobotController;
 
 public enum SharedArray {
     // Start Bit, End Bit
-    TESTVARIABLE (0,1),
-    TESTVAR2 (8,12)
-
+    TESTVARIABLE (0,0,1),
+    TESTVAR2 (0,8,12)
     ;
     /**
      * Creates the AND mask to select a certain amount of bits to the right. For Reading
@@ -32,9 +31,9 @@ public enum SharedArray {
      */
     private final int writeMask;
 
-    SharedArray(int startBit, int endBit) {
+    SharedArray(int arrayIndex,int startBit, int endBit) {
 
-        this.arrayIndex = startBit / 16;
+        this.arrayIndex = arrayIndex;
         //For Reading
         this.readMask = 0xffff >>> 16 - (endBit - startBit);
         this.rightShift = 16-endBit;
@@ -51,6 +50,7 @@ public enum SharedArray {
     }
     public void write(int value,RobotController rc) throws GameActionException{
         //Apply a set mask and then an unset mask.
-        rc.writeSharedArray(arrayIndex,(rc.readSharedArray(arrayIndex) | (value<<leftShift)) & ~(writeMask ^ (value << leftShift)));
+        int shifted = value<<leftShift;
+        rc.writeSharedArray(arrayIndex,(rc.readSharedArray(arrayIndex) | shifted) & ~(writeMask ^ shifted));
     }
 }

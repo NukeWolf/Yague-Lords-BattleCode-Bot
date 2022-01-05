@@ -15,16 +15,13 @@ public class Archon extends Robot {
     public Archon(RobotController rc) throws GameActionException{
         super(rc);
     }
+
     @Override
     public void run() throws GameActionException{
         super.run();
 
-
-
-        SharedArray.TESTVARIABLE.read(rc);
-        SharedArray.TESTVARIABLE.read(rc);
-        //rc.writeSharedArray(0,16384);
-
+        //rc.writeSharedArray(0,2);
+        SharedArray.TESTVARIABLE.write(1,rc);
         switch (currentUnit){
             case MINER:
                 if (currentUnitBuilt >= minerRatio) {
