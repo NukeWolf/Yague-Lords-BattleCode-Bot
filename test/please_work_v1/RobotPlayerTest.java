@@ -1,4 +1,4 @@
-package examplefuncsplayer;
+package please_work_v1;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
