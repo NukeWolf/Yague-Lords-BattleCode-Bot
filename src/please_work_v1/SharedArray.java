@@ -2,11 +2,14 @@ package please_work_v1;
 
 import battlecode.common.GameActionException;
 import battlecode.common.RobotController;
+import org.jetbrains.annotations.NotNull;
 
 public enum SharedArray {
     // Start Bit, End Bit
-    TESTVARIABLE (0,0,1),
-    TESTVAR2 (0,8,12)
+    /**
+     * Each bit in this variable represents if the corresponding index has been searched or not.
+     */
+    SEARCHEDAREAS (1, 0 ,16),
     ;
     /**
      * Creates the AND mask to select a certain amount of bits to the right. For Reading
@@ -31,8 +34,7 @@ public enum SharedArray {
      */
     private final int writeMask;
 
-    SharedArray(int arrayIndex,int startBit, int endBit) {
-
+    SharedArray(int arrayIndex, int startBit, int endBit) {
         this.arrayIndex = arrayIndex;
         //For Reading
         this.readMask = 0xffff >>> 16 - (endBit - startBit);
@@ -48,7 +50,11 @@ public enum SharedArray {
         //First shifts to the right the digits not needed and then selects the amount of binary digits needed to the right.
         return rc.readSharedArray(arrayIndex) >>> rightShift & readMask;
     }
-    public void write(int value,RobotController rc) throws GameActionException{
+    public int readFull(RobotController rc) throws GameActionException{
+        return rc.readSharedArray(arrayIndex);
+    }
+
+    public void write(int value, @NotNull RobotController rc) throws GameActionException{
         //Apply a set mask and then an unset mask.
         int shifted = value<<leftShift;
         rc.writeSharedArray(arrayIndex,(rc.readSharedArray(arrayIndex) | shifted) & ~(writeMask ^ shifted));

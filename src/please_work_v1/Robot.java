@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class Robot {
     RobotController rc;
+
+
     /**
      * A random number generator.
      * We will use this RNG to make some random moves. The Random class is provided by the java.util.Random
@@ -24,13 +26,27 @@ public class Robot {
             Direction.WEST,
             Direction.NORTHWEST,
     };
+
+    final int MapWidth;
+    final int MapHeight;
+    GridLocation currentGridLocation;
+
+
+
     public int turnCount = 0;
 
 
     public Robot(RobotController robotController) throws GameActionException{
         rc = robotController;
+
+        MapWidth = rc.getMapWidth();
+        MapHeight = rc.getMapHeight();
+        currentGridLocation = new GridLocation(rc);
+
     }
     public void run() throws GameActionException{
         turnCount += 1;  // We have now been alive for one more turn!
     }
+
+
 }

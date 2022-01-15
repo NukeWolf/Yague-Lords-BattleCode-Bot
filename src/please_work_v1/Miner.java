@@ -35,6 +35,10 @@ public class Miner extends Robot {
     @Override
     public void run() throws GameActionException{
         super.run();
+
+
+
+
         // Try to mine on squares around us.
         MapLocation me = rc.getLocation();
         int[] arrayInfo = readArray(rc, 9,16);
@@ -139,6 +143,16 @@ public class Miner extends Robot {
             }
         }
     }
+
+    public int findAvailableGridLocation() throws GameActionException{
+        int searchedAreas = SharedArray.SEARCHEDAREAS.readFull(rc);
+        currentGridLocation = new GridLocation(rc);
+        int closest[] = currentGridLocation.getClosestLocations();
+        for (int location:closest){
+
+        }
+    }
+
 
     public void initializeMaps(RobotController rc){
         rubbleMap = new int[rc.getMapWidth()][rc.getMapHeight()];
